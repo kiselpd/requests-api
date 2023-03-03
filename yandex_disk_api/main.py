@@ -23,8 +23,6 @@ class YaUploader:
         upload_link = self.get_upload_link(dir_name+file_name)
         response = requests.put(upload_link, data=open(file_path, "rb"), headers = self.get_headers())
 
-        # print(response.status_code)
-
         if response.status_code == 201:
             print(f"Файл {file_name} загружен!")
 
