@@ -18,14 +18,19 @@ class StackOverflowAPI:
 
         if get_req.status_code == 200:
             print("Удачный запрос!")
-            return get_req.json()
+            return get_req.json().get("items")
         else:
             print("Неудачный запрос!")
             return None
         
-    
+
+def get_link_dict(answers_list: list) -> dict:
+    return {item["title"]: item["link"] for item in answers_list}
 
 
 if __name__ == "__main__":
     api_worker = StackOverflowAPI()
     python_list = api_worker.get_list_questions(tag="python", from_date="2023-03-01")
+    pprint(get_link_dict(python_list))
+    
+    
